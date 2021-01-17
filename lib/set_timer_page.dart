@@ -10,10 +10,7 @@ class _SetTimerState extends State<SetTimerPage> {
   int _setCountdownSec = 0;
 
   int _timeSetter() {
-    setState(() {
-      return 1;
-    });
-    return 1;
+    setState(() {});
   }
 
   @override
@@ -23,13 +20,16 @@ class _SetTimerState extends State<SetTimerPage> {
         title: Text('RoundONE'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           OutlinedButton(
-              child: Text('$_setCountdownMin:$_setCountdownSec'),
-              onPressed: () {}),
+            child: Text('$_setCountdownMin:$_setCountdownSec'),
+            onPressed: () {},
+          ),
           OutlinedButton(child: Text('Round Time'), onPressed: () {}),
-          OutlinedButton(child: Text('Outlinebutton'), onPressed: () {}),
-          OutlinedButton(child: Text('Outlinebutton'), onPressed: () {}),
+          OutlinedButton(child: Text('Pause Time'), onPressed: () {}),
+          OutlinedButton(child: Text('Rounds'), onPressed: () {}),
         ],
       ),
     );
