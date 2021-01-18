@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:round_1/set_timer_page.dart';
+import 'package:roundONE/set_timer_page.dart';
 
 void main() {
   runApp(MyApp());
