@@ -12,14 +12,13 @@ class CupertinoTimePickerButton extends StatefulWidget {
 }
 
 class _CupertinoTimePickerButtonState extends State<CupertinoTimePickerButton> {
-  Duration shownDuration;
+  Duration shownDuration = Duration(seconds: 0);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       child: Text(
-        shownDuration
-            .toString(), //TODO: Minuten und Sekunden werden falsch dargestellt
+        _formatDuration(shownDuration),
         style: TextStyle(color: Colors.white),
       ),
       color: Colors.redAccent,
@@ -42,10 +41,18 @@ class _CupertinoTimePickerButtonState extends State<CupertinoTimePickerButton> {
               });
             },
             minuteInterval: 1,
+            secondInterval: 5,
             mode: CupertinoTimerPickerMode.ms,
           ),
         );
       },
     );
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }
