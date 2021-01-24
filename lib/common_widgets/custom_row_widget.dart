@@ -1,18 +1,15 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-// import 'package:roundONE/common_widgets/number_picker_button.dart';
-// import 'cupertino_time_picker_button.dart';
 
 class CustomRowWidget extends StatelessWidget {
   const CustomRowWidget({
     Key key,
-    this.icon,
+    @required this.icon,
     this.iconSize,
     this.iconColor,
     this.iconAngle,
-    this.text,
-    this.button,
+    @required this.text,
+    @required this.button,
   }) : super(key: key);
 
   final IconData icon;
@@ -21,25 +18,35 @@ class CustomRowWidget extends StatelessWidget {
   final int iconAngle;
   final String text;
   final Widget button;
+  final double padding = 10;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
-          padding: const EdgeInsets.only(bottom: 8),
+        Padding(
+          padding: EdgeInsets.all(padding),
           child: Transform.rotate(
-            angle: 180 * pi / iconAngle,
+            angle: 180 * pi / (iconAngle == null ? 90 : iconAngle),
             child: Icon(
               icon,
-              size: iconSize,
-              color: iconColor,
+              size: iconSize == null ? 70 : iconSize,
+              color: iconColor == null ? Colors.red : iconColor,
             ),
           ),
         ),
-        Text(text),
-        button,
+        SizedBox(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+          ),
+          width: 100,
+        ),
+        Padding(
+          padding: EdgeInsets.all(padding),
+          child: button,
+        ),
       ],
     );
   }

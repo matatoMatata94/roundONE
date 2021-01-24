@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:roundONE/set_timer_page.dart';
+import 'package:roundONE/pages/set_timer_page.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-//test
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
