@@ -31,7 +31,7 @@ class CustomRowWidget extends StatelessWidget {
             angle: 180 * pi / (iconAngle == null ? 90 : iconAngle),
             child: Icon(
               icon,
-              size: iconSize == null ? 70 : iconSize,
+              size: iconSize == null ? 90 : iconSize,
               color: iconColor == null ? Colors.red : iconColor,
             ),
           ),

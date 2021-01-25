@@ -23,7 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
+  transition: ^1.0.2
+  concentric_transition: ^0.1.1
   flutter_spinbox: ^0.3.0    
 
 
