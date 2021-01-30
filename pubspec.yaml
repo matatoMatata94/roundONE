@@ -25,7 +25,7 @@ dependencies:
     sdk: flutter
 
   transition: ^1.0.2
-  concentric_transition: ^0.1.1
+  circular_countdown_timer: ^0.0.9
   flutter_spinbox: ^0.3.0    
 
 

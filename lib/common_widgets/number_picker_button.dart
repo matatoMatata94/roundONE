@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 
 class NumberPickerButton extends StatefulWidget {
+  int get shownNumber => null;
+
   @override
   _NumberPickerButtonState createState() => _NumberPickerButtonState();
+
+  int numberReturner() {
+    print(shownNumber);
+    return shownNumber;
+  }
 }
 
 class _NumberPickerButtonState extends State<NumberPickerButton> {

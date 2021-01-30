@@ -38,6 +38,7 @@ class _CupertinoTimePickerButtonState extends State<CupertinoTimePickerButton> {
             onTimerDurationChanged: (Duration newDuration) {
               setState(() {
                 shownDuration = newDuration;
+                return shownDuration;
               });
             },
             minuteInterval: 1,
