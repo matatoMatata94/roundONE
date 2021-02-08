@@ -23,10 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  transition: ^1.0.2
-  circular_countdown_timer: ^0.0.9
+  
   flutter_spinbox: ^0.3.0    
+  circular_countdown_timer: ^0.0.9
 
 
   # The following adds the Cupertino Icons font to your application.

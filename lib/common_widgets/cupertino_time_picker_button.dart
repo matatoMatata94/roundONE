@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CupertinoTimePickerButton extends StatefulWidget {
-  const CupertinoTimePickerButton({
+  Duration passedValue;
+
+  CupertinoTimePickerButton({
     Key key,
+    @required this.passedValue,
   }) : super(key: key);
 
   @override
@@ -12,13 +15,11 @@ class CupertinoTimePickerButton extends StatefulWidget {
 }
 
 class _CupertinoTimePickerButtonState extends State<CupertinoTimePickerButton> {
-  Duration shownDuration = Duration(seconds: 0);
-
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       child: Text(
-        _formatDuration(shownDuration),
+        _formatDuration(widget.passedValue),
         style: TextStyle(color: Colors.white),
       ),
       color: Colors.redAccent,
@@ -37,8 +38,7 @@ class _CupertinoTimePickerButtonState extends State<CupertinoTimePickerButton> {
           child: CupertinoTimerPicker(
             onTimerDurationChanged: (Duration newDuration) {
               setState(() {
-                shownDuration = newDuration;
-                return shownDuration;
+                widget.passedValue = newDuration;
               });
             },
             minuteInterval: 1,

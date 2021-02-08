@@ -6,7 +6,14 @@ import 'package:roundONE/common_widgets/start_button.dart';
 import '../common_widgets/cupertino_time_picker_button.dart';
 import '../common_widgets/number_picker_button.dart';
 
-class SetTimerPage extends StatelessWidget {
+class SetTimerPage extends StatefulWidget {
+  @override
+  _SetTimerPageState createState() => _SetTimerPageState();
+}
+
+class _SetTimerPageState extends State<SetTimerPage> {
+  final Duration countdown = Duration(minutes: 0, seconds: 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,25 +28,25 @@ class SetTimerPage extends StatelessWidget {
             CustomRowWidget(
               icon: Icons.alarm_sharp,
               text: 'COUNTDOWN',
-              button: CupertinoTimePickerButton(),
+              button: CupertinoTimePickerButton(passedValue: countdown),
             ),
-            CustomRowWidget(
-              icon: Icons.sports_mma_sharp,
-              iconAngle: 120,
-              text: 'ROUND',
-              button: CupertinoTimePickerButton(),
-            ),
-            CustomRowWidget(
-              icon: Icons.looks_one_rounded,
-              text: 'ROUNDS',
-              button: NumberPickerButton(),
-            ),
-            CustomRowWidget(
-              icon: Icons.motion_photos_pause_rounded,
-              text: 'PAUSE',
-              button: CupertinoTimePickerButton(),
-            ),
-            StartButton(),
+            // CustomRowWidget(
+            //   icon: Icons.sports_mma_sharp,
+            //   iconAngle: 120,
+            //   text: 'ROUND',
+            //   button: CupertinoTimePickerButton(),
+            // ),
+            // CustomRowWidget(
+            //   icon: Icons.looks_one_rounded,
+            //   text: 'ROUNDS',
+            //   button: NumberPickerButton(),
+            // ),
+            // CustomRowWidget(
+            //   icon: Icons.motion_photos_pause_rounded,
+            //   text: 'PAUSE',
+            //   button: CupertinoTimePickerButton(),
+            // ),
+            StartButton(countdown: countdown),
           ],
         ),
       ),
