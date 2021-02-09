@@ -12,7 +12,13 @@ class SetTimerPage extends StatefulWidget {
 }
 
 class _SetTimerPageState extends State<SetTimerPage> {
-  final Duration countdown = Duration(minutes: 0, seconds: 0);
+  Duration countdown;
+
+  @override
+  void initState() {
+    super.initState();
+    countdown = Duration(minutes: 0, seconds: 0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +34,14 @@ class _SetTimerPageState extends State<SetTimerPage> {
             CustomRowWidget(
               icon: Icons.alarm_sharp,
               text: 'COUNTDOWN',
-              button: CupertinoTimePickerButton(passedValue: countdown),
+              button: CupertinoTimePickerButton(
+                passedValue: countdown,
+                onChanged: (Duration duration) {
+                  setState(() {
+                    this.countdown = duration;
+                  });
+                },
+              ),
             ),
             // CustomRowWidget(
             //   icon: Icons.sports_mma_sharp,
