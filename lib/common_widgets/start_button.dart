@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:roundONE/pages/timer_page.dart';
 
 class StartButton extends StatelessWidget {
-  final Duration countdown;
+  StartButton({
+    this.countdownBeforeRound,
+    this.durationOfaRound,
+    this.numberOfRounds,
+    this.durationOfaPause,
+  });
 
-  StartButton({this.countdown});
+  final Duration countdownBeforeRound;
+  final Duration durationOfaRound;
+  final int numberOfRounds;
+  final Duration durationOfaPause;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +25,8 @@ class StartButton extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => TimerPage(countdown: countdown)));
+              builder: (context) =>
+                  TimerPage(countdownBeforeRound: countdownBeforeRound)));
         });
   }
 }

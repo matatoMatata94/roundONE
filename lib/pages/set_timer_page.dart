@@ -12,12 +12,18 @@ class SetTimerPage extends StatefulWidget {
 }
 
 class _SetTimerPageState extends State<SetTimerPage> {
-  Duration countdown;
+  Duration countdownBeforeRound;
+  Duration durationOfRound;
+  int numberOfRounds;
+  Duration durationOfPause;
 
   @override
   void initState() {
     super.initState();
-    countdown = Duration(minutes: 0, seconds: 0);
+    countdownBeforeRound = Duration(minutes: 0, seconds: 0);
+    durationOfRound = Duration(minutes: 0, seconds: 0);
+    numberOfRounds = 0;
+    durationOfPause = Duration(minutes: 0, seconds: 0);
   }
 
   @override
@@ -31,37 +37,67 @@ class _SetTimerPageState extends State<SetTimerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            CustomRowWidget(
-              icon: Icons.alarm_sharp,
-              text: 'COUNTDOWN',
-              button: CupertinoTimePickerButton(
-                passedValue: countdown,
-                onChanged: (Duration duration) {
-                  setState(() {
-                    this.countdown = duration;
-                  });
-                },
-              ),
-            ),
-            // CustomRowWidget(
-            //   icon: Icons.sports_mma_sharp,
-            //   iconAngle: 120,
-            //   text: 'ROUND',
-            //   button: CupertinoTimePickerButton(),
-            // ),
-            // CustomRowWidget(
-            //   icon: Icons.looks_one_rounded,
-            //   text: 'ROUNDS',
-            //   button: NumberPickerButton(),
-            // ),
-            // CustomRowWidget(
-            //   icon: Icons.motion_photos_pause_rounded,
-            //   text: 'PAUSE',
-            //   button: CupertinoTimePickerButton(),
-            // ),
-            StartButton(countdown: countdown),
+            buildRow1(countdownBeforeRound),
+            buildRow2(durationOfRound),
+            buildRow3(numberOfRounds),
+            buildRow4(durationOfPause),
+            StartButton(countdownBeforeRound: countdownBeforeRound),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildRow1(Duration countdownBeforeRound) {
+    return CustomRowWidget(
+      icon: Icons.alarm_sharp,
+      text: 'COUNTDOWN',
+      button: CupertinoTimePickerButton(
+        passedValue: countdownBeforeRound,
+        onChanged: (Duration duration) {
+          setState(() {
+            this.countdownBeforeRound = duration;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget buildRow2(Duration durationOfRound) {
+    return CustomRowWidget(
+      icon: Icons.sports_mma_sharp,
+      iconAngle: 120,
+      text: 'ROUND',
+      button: CupertinoTimePickerButton(
+        passedValue: durationOfRound,
+        onChanged: (Duration duration) {
+          setState(() {
+            this.durationOfRound = duration;
+          });
+        },
+      ),
+    );
+  }
+
+  Widget buildRow3(int numberOfRounds) {
+    return CustomRowWidget(
+      icon: Icons.looks_one_rounded,
+      text: 'ROUNDS',
+      button: NumberPickerButton(),
+    );
+  }
+
+  Widget buildRow4(Duration durationOfPause) {
+    return CustomRowWidget(
+      icon: Icons.motion_photos_pause_rounded,
+      text: 'PAUSE',
+      button: CupertinoTimePickerButton(
+        passedValue: durationOfPause,
+        onChanged: (Duration duration) {
+          setState(() {
+            this.durationOfPause = duration;
+          });
+        },
       ),
     );
   }

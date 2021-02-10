@@ -2,9 +2,17 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 
 class TimerPage extends StatefulWidget {
-  final Duration countdown;
+  TimerPage({
+    this.countdownBeforeRound,
+    this.durationOfaRound,
+    this.numberOfRounds,
+    this.durationOfaPause,
+  });
 
-  TimerPage({this.countdown});
+  final Duration countdownBeforeRound;
+  final Duration durationOfaRound;
+  final int numberOfRounds;
+  final Duration durationOfaPause;
 
   @override
   _TimerPageState createState() => _TimerPageState();
@@ -19,7 +27,7 @@ class _TimerPageState extends State<TimerPage> {
       ),
       body: Center(
         child: CircularCountDownTimer(
-          duration: widget.countdown.inSeconds,
+          duration: widget.countdownBeforeRound.inSeconds,
           controller: CountDownController(),
           width: MediaQuery.of(context).size.width / 1.25,
           height: MediaQuery.of(context).size.height / 2,
