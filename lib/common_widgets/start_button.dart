@@ -16,7 +16,6 @@ class StartButton extends StatelessWidget {
           color: Colors.red,
         ),
         onPressed: () {
-          print(countdown);
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => TimerPage(countdown: countdown)));
         });
