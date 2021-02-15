@@ -37,10 +37,10 @@ class _SetTimerPageState extends State<SetTimerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            buildRow1(countdownBeforeRound),
-            buildRow2(durationOfRound),
-            buildRow3(numberOfRounds),
-            buildRow4(durationOfPause),
+            buildCountdownRow(countdownBeforeRound),
+            buildDurationOfRoundRow(durationOfRound),
+            buildNumberOfRoundsRow(numberOfRounds),
+            buildDurationOfPauseRow(durationOfPause),
             StartButton(countdownBeforeRound: countdownBeforeRound),
           ],
         ),
@@ -48,7 +48,7 @@ class _SetTimerPageState extends State<SetTimerPage> {
     );
   }
 
-  Widget buildRow1(Duration countdownBeforeRound) {
+  Widget buildCountdownRow(Duration countdownBeforeRound) {
     return CustomRowWidget(
       icon: Icons.alarm_sharp,
       text: 'COUNTDOWN',
@@ -63,7 +63,7 @@ class _SetTimerPageState extends State<SetTimerPage> {
     );
   }
 
-  Widget buildRow2(Duration durationOfRound) {
+  Widget buildDurationOfRoundRow(Duration durationOfRound) {
     return CustomRowWidget(
       icon: Icons.sports_mma_sharp,
       iconAngle: 120,
@@ -79,7 +79,7 @@ class _SetTimerPageState extends State<SetTimerPage> {
     );
   }
 
-  Widget buildRow3(int numberOfRounds) {
+  Widget buildNumberOfRoundsRow(int numberOfRounds) {
     return CustomRowWidget(
       icon: Icons.looks_one_rounded,
       text: 'ROUNDS',
@@ -87,7 +87,7 @@ class _SetTimerPageState extends State<SetTimerPage> {
     );
   }
 
-  Widget buildRow4(Duration durationOfPause) {
+  Widget buildDurationOfPauseRow(Duration durationOfPause) {
     return CustomRowWidget(
       icon: Icons.motion_photos_pause_rounded,
       text: 'PAUSE',

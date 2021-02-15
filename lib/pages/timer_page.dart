@@ -53,4 +53,17 @@ class _TimerPageState extends State<TimerPage> {
       ),
     );
   }
+
+  int chosenCountdown(
+    Duration countdownBeforeRound,
+    Duration durationOfaRound,
+    int numberOfRounds,
+    Duration durationOfaPause,
+  ) {
+    if (countdownBeforeRound.inSeconds != 0) {
+      return countdownBeforeRound.inSeconds;
+    } else {
+      return durationOfaRound.inSeconds;
+    }
+  }
 }
