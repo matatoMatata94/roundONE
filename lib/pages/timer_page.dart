@@ -5,7 +5,7 @@ class TimerPage extends StatefulWidget {
   TimerPage({
     this.countdownBeforeRound,
     this.durationOfaRound,
-    this.numberOfRounds = 1,
+    this.numberOfRounds,
     this.durationOfaPause,
   });
 
@@ -19,6 +19,20 @@ class TimerPage extends StatefulWidget {
 }
 
 class _TimerPageState extends State<TimerPage> {
+  int timerDuration;
+  int roundCounter;
+
+  @override
+  void initState() {
+    super.initState();
+    roundCounter = widget.numberOfRounds;
+    if (widget.countdownBeforeRound.inSeconds == 0) {
+      timerDuration = widget.durationOfaRound.inSeconds;
+    } else {
+      timerDuration = widget.countdownBeforeRound.inSeconds;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +42,10 @@ class _TimerPageState extends State<TimerPage> {
       body: Center(
         child: CircularCountDownTimer(
           key: UniqueKey(),
-          duration: widget.countdownBeforeRound.inSeconds,
-          controller: CountDownController(),
+          duration: timerDuration,
           width: MediaQuery.of(context).size.width / 1.25,
           height: MediaQuery.of(context).size.height / 2,
-          color: Colors.grey[300],
+          ringColor: Colors.grey[300],
           fillColor: Colors.redAccent[200],
           backgroundColor: Colors.red[600],
           strokeWidth: 50.0,
@@ -49,157 +62,21 @@ class _TimerPageState extends State<TimerPage> {
           },
           onComplete: () {
             print('Countdown Ended');
-            setState(() {
-              for (int i = widget.numberOfRounds; i > 0; i--)
-                CircularCountDownTimer(
-                  duration: widget.durationOfaRound.inSeconds,
-                  controller: CountDownController(),
-                  width: MediaQuery.of(context).size.width / 1.25,
-                  height: MediaQuery.of(context).size.height / 2,
-                  color: Colors.grey[300],
-                  fillColor: Colors.redAccent[200],
-                  backgroundColor: Colors.red[600],
-                  strokeWidth: 50.0,
-                  strokeCap: StrokeCap.round,
-                  textStyle: TextStyle(
-                      fontSize: 80.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                  textFormat: CountdownTextFormat.MM_SS,
-                  isReverse: true,
-                  isReverseAnimation: true,
-                  isTimerTextShown: true,
-                  autoStart: true,
-                  onStart: () {
-                    print('Round Started');
-                  },
-                  onComplete: () {
-                    print('Round Ended');
-                    for (int i = widget.numberOfRounds; i > 1; i--) {
-                      CircularCountDownTimer(
-                        duration: widget.durationOfaRound.inSeconds,
-                        controller: CountDownController(),
-                        width: MediaQuery.of(context).size.width / 1.25,
-                        height: MediaQuery.of(context).size.height / 2,
-                        color: Colors.grey[300],
-                        fillColor: Colors.redAccent[200],
-                        backgroundColor: Colors.red[600],
-                        strokeWidth: 50.0,
-                        strokeCap: StrokeCap.round,
-                        textStyle: TextStyle(
-                            fontSize: 80.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                        textFormat: CountdownTextFormat.MM_SS,
-                        isReverse: true,
-                        isReverseAnimation: true,
-                        isTimerTextShown: true,
-                        autoStart: true,
-                        onStart: () {
-                          print('Pause Started');
-                        },
-                        onComplete: () {
-                          print('Pause Ended');
-                        },
-                      );
-                    }
-                  },
-                );
-            });
+            onComplete();
           },
         ),
       ),
     );
   }
 
-  CircularCountDownTimer circularCountDownTimer(
-    BuildContext context,
-    Duration countdownBeforeRound,
-    Duration durationOfaRound,
-    int numberOfRounds,
-    Duration durationOfaPause,
-  ) {
-    return CircularCountDownTimer(
-      key: UniqueKey(),
-      duration: countdownBeforeRound.inSeconds,
-      controller: CountDownController(),
-      width: MediaQuery.of(context).size.width / 1.25,
-      height: MediaQuery.of(context).size.height / 2,
-      color: Colors.grey[300],
-      fillColor: Colors.redAccent[200],
-      backgroundColor: Colors.red[600],
-      strokeWidth: 50.0,
-      strokeCap: StrokeCap.round,
-      textStyle: TextStyle(
-          fontSize: 80.0, color: Colors.white, fontWeight: FontWeight.bold),
-      textFormat: CountdownTextFormat.MM_SS,
-      isReverse: true,
-      isReverseAnimation: true,
-      isTimerTextShown: true,
-      autoStart: true,
-      onStart: () {
-        print('Countdown Started');
-      },
-      onComplete: () {
-        print('Countdown Ended');
-        setState(() {
-          for (int i = numberOfRounds; i > 0; i--)
-            CircularCountDownTimer(
-              duration: durationOfaRound.inSeconds,
-              controller: CountDownController(),
-              width: MediaQuery.of(context).size.width / 1.25,
-              height: MediaQuery.of(context).size.height / 2,
-              color: Colors.grey[300],
-              fillColor: Colors.redAccent[200],
-              backgroundColor: Colors.red[600],
-              strokeWidth: 50.0,
-              strokeCap: StrokeCap.round,
-              textStyle: TextStyle(
-                  fontSize: 80.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-              textFormat: CountdownTextFormat.MM_SS,
-              isReverse: true,
-              isReverseAnimation: true,
-              isTimerTextShown: true,
-              autoStart: true,
-              onStart: () {
-                print('Round Started');
-              },
-              onComplete: () {
-                print('Round Ended');
-                for (int i = numberOfRounds; i > 1; i--) {
-                  CircularCountDownTimer(
-                    duration: durationOfaRound.inSeconds,
-                    controller: CountDownController(),
-                    width: MediaQuery.of(context).size.width / 1.25,
-                    height: MediaQuery.of(context).size.height / 2,
-                    color: Colors.grey[300],
-                    fillColor: Colors.redAccent[200],
-                    backgroundColor: Colors.red[600],
-                    strokeWidth: 50.0,
-                    strokeCap: StrokeCap.round,
-                    textStyle: TextStyle(
-                        fontSize: 80.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                    textFormat: CountdownTextFormat.MM_SS,
-                    isReverse: true,
-                    isReverseAnimation: true,
-                    isTimerTextShown: true,
-                    autoStart: true,
-                    onStart: () {
-                      print('Pause Started');
-                    },
-                    onComplete: () {
-                      print('Pause Ended');
-                    },
-                  );
-                }
-              },
-            );
-        });
-      },
-    );
+  void onComplete() {
+    roundCounter = widget.numberOfRounds;
+    print(roundCounter.toString());
+    if (roundCounter > 0) {
+      timerDuration = widget.durationOfaRound.inSeconds;
+      setState(() {
+        roundCounter--;
+      });
+    } else {}
   }
 }

@@ -41,7 +41,12 @@ class _SetTimerPageState extends State<SetTimerPage> {
             buildDurationOfRoundRow(durationOfRound),
             buildNumberOfRoundsRow(numberOfRounds),
             buildDurationOfPauseRow(durationOfPause),
-            StartButton(countdownBeforeRound: countdownBeforeRound),
+            StartButton(
+              countdownBeforeRound: countdownBeforeRound,
+              durationOfaRound: durationOfRound,
+              numberOfRounds: numberOfRounds,
+              durationOfaPause: durationOfPause,
+            ),
           ],
         ),
       ),
@@ -83,7 +88,9 @@ class _SetTimerPageState extends State<SetTimerPage> {
     return CustomRowWidget(
       icon: Icons.looks_one_rounded,
       text: 'ROUNDS',
-      button: NumberPickerButton(),
+      button: NumberPickerButton(
+        numberOfRounds: numberOfRounds,
+      ),
     );
   }
 

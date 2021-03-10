@@ -2,27 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 
 class NumberPickerButton extends StatefulWidget {
+  NumberPickerButton({
+    this.numberOfRounds,
+  });
+  final numberOfRounds;
   @override
   _NumberPickerButtonState createState() => _NumberPickerButtonState();
 }
 
 class _NumberPickerButtonState extends State<NumberPickerButton> {
-  int shownNumber;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       child: Text(
-        shownNumber == null ? '0' : shownNumber.toString(),
+        widget.numberOfRounds == null ? '0' : widget.numberOfRounds.toString(),
         style: TextStyle(color: Colors.white),
       ),
       color: Colors.redAccent,
       onPressed: () {
-        _numberSetter(context);
+        _numberSetter(context, widget.numberOfRounds);
       },
     );
   }
 
-  Future _numberSetter(BuildContext context) {
+  Future _numberSetter(BuildContext context, int shownnumber) {
     return showModalBottomSheet(
       context: context,
       builder: (BuildContext builder) {
@@ -46,7 +49,7 @@ class _NumberPickerButtonState extends State<NumberPickerButton> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    shownNumber = value.toInt();
+                    widget.numberOfRounds = value.toInt();
                   });
                 },
               ),

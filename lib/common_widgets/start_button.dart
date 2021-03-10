@@ -24,9 +24,17 @@ class StartButton extends StatelessWidget {
           color: Colors.red,
         ),
         onPressed: () {
+          print("startbutton(countdownBeforeRound): $countdownBeforeRound");
+          print("startbutton(duratioinOfaPause): $durationOfaPause");
+          print("startbutton(durationOfaRound): $durationOfaRound");
+          print("startbutton(numberOfRounds): $numberOfRounds");
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  TimerPage(countdownBeforeRound: countdownBeforeRound)));
+              builder: (context) => TimerPage(
+                    countdownBeforeRound: countdownBeforeRound,
+                    durationOfaRound: durationOfaRound,
+                    durationOfaPause: durationOfaPause,
+                    numberOfRounds: numberOfRounds,
+                  )));
         });
   }
 }
