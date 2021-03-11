@@ -90,6 +90,11 @@ class _SetTimerPageState extends State<SetTimerPage> {
       text: 'ROUNDS',
       button: NumberPickerButton(
         numberOfRounds: numberOfRounds,
+        onChanged: (int setRounds) {
+          setState(() {
+            this.numberOfRounds = setRounds;
+          });
+        },
       ),
     );
   }

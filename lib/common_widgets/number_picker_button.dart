@@ -4,8 +4,10 @@ import 'package:flutter_spinbox/flutter_spinbox.dart';
 class NumberPickerButton extends StatefulWidget {
   NumberPickerButton({
     this.numberOfRounds,
+    this.onChanged,
   });
   final numberOfRounds;
+  final ValueChanged<int> onChanged;
   @override
   _NumberPickerButtonState createState() => _NumberPickerButtonState();
 }
@@ -49,7 +51,7 @@ class _NumberPickerButtonState extends State<NumberPickerButton> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    widget.numberOfRounds = value.toInt();
+                    value.toInt();
                   });
                 },
               ),
