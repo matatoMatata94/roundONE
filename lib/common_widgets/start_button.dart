@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roundONE/pages/timer_page.dart';
+import 'package:round_one/pages/timer_page.dart';
 
 class StartButton extends StatelessWidget {
   StartButton({

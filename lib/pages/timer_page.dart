@@ -21,11 +21,11 @@ class TimerPage extends StatefulWidget {
 class _TimerPageState extends State<TimerPage> {
   int timerDuration;
   int roundCounter;
+  int pauseCounter;
 
   @override
   void initState() {
     super.initState();
-    roundCounter = widget.numberOfRounds;
     if (widget.countdownBeforeRound.inSeconds == 0) {
       timerDuration = widget.durationOfaRound.inSeconds;
     } else {
@@ -70,13 +70,21 @@ class _TimerPageState extends State<TimerPage> {
   }
 
   void onComplete() {
-    roundCounter = widget.numberOfRounds;
-    print(roundCounter.toString());
+    print('onComplete: $roundCounter.toString()');
+    print('onComplete: $pauseCounter.toString()');
     if (roundCounter > 0) {
+      roundCounter = widget.numberOfRounds;
       timerDuration = widget.durationOfaRound.inSeconds;
       setState(() {
         roundCounter--;
       });
     } else {}
+  }
+
+  void setVariable() {
+    roundCounter = widget.numberOfRounds;
+    print('setVariable: $roundCounter');
+    pauseCounter = widget.numberOfRounds - 1;
+    print('setVariable: $pauseCounter');
   }
 }

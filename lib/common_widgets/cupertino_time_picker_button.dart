@@ -29,7 +29,7 @@ class CupertinoTimePickerButton extends StatelessWidget {
       context: context,
       builder: (BuildContext builder) {
         return Container(
-          height: MediaQuery.of(context).copyWith().size.height / 2,
+          height: MediaQuery.of(context).size.height / 2,
           child: CupertinoTimerPicker(
             onTimerDurationChanged: this.onChanged,
             minuteInterval: 1,

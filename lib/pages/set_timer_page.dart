@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:roundONE/common_widgets/custom_row_widget.dart';
-import 'package:roundONE/common_widgets/start_button.dart';
+import 'package:round_one/common_widgets/cupertino_number_picker_button.dart';
+import 'package:round_one/common_widgets/custom_row_widget.dart';
+import 'package:round_one/common_widgets/start_button.dart';
 
 import '../common_widgets/cupertino_time_picker_button.dart';
-import '../common_widgets/number_picker_button.dart';
 
 class SetTimerPage extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class SetTimerPage extends StatefulWidget {
 class _SetTimerPageState extends State<SetTimerPage> {
   Duration countdownBeforeRound;
   Duration durationOfRound;
-  int numberOfRounds;
+  int numberOfRounds = 1;
   Duration durationOfPause;
 
   @override
@@ -88,11 +88,10 @@ class _SetTimerPageState extends State<SetTimerPage> {
     return CustomRowWidget(
       icon: Icons.looks_one_rounded,
       text: 'ROUNDS',
-      button: NumberPickerButton(
-        numberOfRounds: numberOfRounds,
-        onChanged: (int setRounds) {
+      button: CupertinoNumberPickerButton(
+        onChanged: (int rounds) {
           setState(() {
-            this.numberOfRounds = setRounds;
+            this.numberOfRounds = rounds;
           });
         },
       ),
